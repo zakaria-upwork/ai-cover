@@ -1,35 +1,53 @@
 from cog import BasePredictor, Input, Path
 import os
-from utils import download_online_model, download_gdrive_model, generate_ai_cover, move_model
+from utils import download_online_model, generate_ai_cover, move_model
 
 class Predictor(BasePredictor):
     def predict(
         self,
         voice_model:str = Input(
             description="Voice model.",
-            choices=["custom"
-                    ,"ariana-grande"
-                    ,"the-weeknd"
-                    ,"villager"
-                    ,"trump"
-                    ,"taylor-swift" 
-                    ,"tate"
-                    ,"squidward"
-                    ,"spongebob-squarepants"
-                    ,"siri"
-                    ,"britney-spears"
-                    ,"pikachu"
-                    ,"obama"
-                    ,"mrbeast"
-                    ,"mj-raspy"
-                    ,"megatron"
-                    ,"kanye"
-                    ,"eminem"
-                    ,"elon-musk" 
-                    ,"drake"
-                    ,"darthvader"
-                    ,"billie-eilish"
-                    ,"biden"],
+            choices=["custom",
+                    "2pac",
+                    "adele",
+                    "alvin",
+                    "ariana-grande",
+                    "baby",
+                    "biden",
+                    "billie-eilish",
+                    "britney-spears",
+                    "craig-tucker",
+                    "darthvader",
+                    "drake",
+                    "elon-musk",
+                    "eminem",
+                    "freddie-mercury",
+                    "justin-beiber",
+                    "kanye",
+                    "kurt-cobain",
+                    "lisa-simpsons",
+                    "megatron",
+                    "miley-cyrus",
+                    "mj-raspy",
+                    "mrbeast",
+                    "mrkrabs",
+                    "mrohare",
+                    "obama",
+                    "pikachu",
+                    "plankton",
+                    "rihanna",
+                    "selena-gomez",
+                    "siri",
+                    "spongebob-squarepants",
+                    "squidward",
+                    "stewie-griffin",
+                    "tate",
+                    "taylor-swift",
+                    "the-weeknd",
+                    "travis-scott",
+                    "trump",
+                    "villager",
+                    "xxxtentacion"],
             default='taylor-swift',),
         audio: str = Input(
             description="Youtube link.",

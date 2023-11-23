@@ -5,32 +5,6 @@ import urllib.request
 import gdown
 import subprocess
 
-BASE_DIR = os.getcwd()
-rvc_models_dir = os.path.join(BASE_DIR, 'rvc_models')
-
-voice_models = {"ariana-grande":"1XmsNoOP8vbT7icJ5r1q0spc-JtTwy19i"
-,"the-weeknd":"1Xa6M83Vzmys3NL0cERGoouDAS12U3Pl6"
-,"villager":"1Xop5JQwBYXPRX5Zc_HEe1wYK82kk-FgH"
-,"trump":"1Y54pTA0TyKAc2_afIL1J1xwIeOZnb1Wm"
-,"taylor-swift":"1XAGydwT5IZJ5z3x01ZnnMr2132CbSacG"
-,"tate":"1JV_LT6AiLcxTshh_ITPqBU0tYAK0C9KG"
-,"squidward":"1XujRA1g5QSmEzgAnh_sw-cMK1DP68TVE"
-,"spongebob-squarepants":"1XokrEwcsNLLSx15n3pWP7EBq83b7FA2U"
-,"siri":"1WsmXBRX9saFxTG2ymf_EkixHLv4inHum"
-,"britney-spears":"1XFq_O3VpssFW1CWajXyMeROvudtKfWIZ"
-,"pikachu":"1WmU6cJznw5en5Z2yxkrXpZfBwUDnwe8w"
-,"obama":"1XJz825ywIl3OVL67oa5QB54niW8aneB_"
-,"mrbeast":"1WcHOiJXrWzSgjWJ8AwNf2xPDiEmF-5Lg"
-,"mj-raspy":"1WyGSPA4gsMpkDM2cuffYzp174LN1XlHC"
-,"megatron":"1WrXWxTwoHepKEnJGJYEvdglp9zMTvAoL"
-,"kanye":"1XM1NiWsp7T5idi36CqepMlNvDtmrYPJ5"
-,"eminem":"1XWLv1AMF_y0KQC3zx94id8qS05z3Hzou"
-,"elon-musk":"1YDKJf081FrEjA1mm74Skp8Vrl9sFA6k6"
-,"drake":"1XbNY3Y_B0D9CZDWyz1HNpDtIAjnarz4H"
-,"darthvader":"1WeDfGBIUork8vEyfW1LMIQWsPOujhXcp"
-,"billie-eilish":"1XDQccGnGy9B39drbc_dw0BHKlSTZClvz"
-,"biden":"1XHNWefqHUlrRI-qgRknuI6wS3lYRb3Pg"}
-
 def extract_zip(extraction_folder, zip_name):
     os.makedirs(extraction_folder)
     with zipfile.ZipFile(zip_name, 'r') as zip_ref:
@@ -79,24 +53,6 @@ def download_online_model(url, dir_name='custom'):
     except Exception as e:
         raise Exception(str(e))
 
-
-def download_gdrive_model(voice):
-    # Google Drive file URL (make sure it's shared and accessible)
-    file_url = f"https://drive.google.com/uc?id={voice_models[voice]}"
-
-    # Define the destination file name and path
-    output_file = f"{voice}.zip"
-    os.makedirs(f"rvc_models/{voice}",exist_ok=True)
-    # Download the file
-    gdown.download(file_url, output_file, quiet=False)
-
-    # Unzip the downloaded file
-    with zipfile.ZipFile(output_file, "r") as zip_ref:
-        zip_ref.extractall(f"rvc_models/{voice}")
-
-    os.remove(output_file)
-
-
 def generate_ai_cover(SONG_INPUT,RVC_DIRNAME):
     PITCH_CHANGE = 0 
     PITCH_CHANGE_ALL = 0 
@@ -142,8 +98,6 @@ def generate_ai_cover(SONG_INPUT,RVC_DIRNAME):
     for line in process.stdout:
         print(line, end='')
     process.wait()
-
-
 
 def move_model(destination_dir):
     file_extension = ".pt"
