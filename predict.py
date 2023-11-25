@@ -1,6 +1,6 @@
 from cog import BasePredictor, Input, Path
 import os
-from utils import download_online_model, generate_ai_cover, move_model
+from utils import download_online_model, generate_ai_cover
 
 class Predictor(BasePredictor):
     def predict(
@@ -49,7 +49,11 @@ class Predictor(BasePredictor):
                     "villager",
                     "xxxtentacion"],
             default='taylor-swift',),
-        audio: str = Input(
+        audio: Path = Input(
+            description="song_input",
+            default= None,
+        ),
+        youtube_link: str = Input(
             description="Youtube link.",
             default= None,
         ),
@@ -58,6 +62,10 @@ class Predictor(BasePredictor):
             default=None
         )
     ) -> Path:
+        if audio and youtube_link:
+            raise(Exception("Choose audio or youtube link."))
+        if youtube_link:
+            audio=youtube_link
         if voice_model == "custom":
             download_online_model(custom_voice_model_link)
             generate_ai_cover(audio,"custom")

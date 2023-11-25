@@ -37,7 +37,7 @@ def download_online_model(url, dir_name='custom'):
     try:
         print(f'[~] Downloading voice model with name {dir_name}...')
         zip_name = url.split('/')[-1]
-        extraction_folder = os.path.join(rvc_models_dir, dir_name)
+        extraction_folder = os.path.join('rvc_models', dir_name)
         if os.path.exists(extraction_folder):
             shutil.rmtree(extraction_folder)
 
@@ -62,7 +62,7 @@ def generate_ai_cover(SONG_INPUT,RVC_DIRNAME):
     CREPE_HOP_LENGTH = 128 
     PROTECT = 0.33 
     REMIX_MIX_RATE = 0.25  
-    MAIN_VOL = 0 
+    MAIN_VOL = 10 
     BACKUP_VOL = 0 
     INST_VOL = 0 
     REVERB_SIZE = 0.15 
