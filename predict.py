@@ -1,6 +1,6 @@
 from cog import BasePredictor, Input, Path
 import os
-from utils import download_online_model, generate_ai_cover
+from utils import download_online_model, generate_ai_cover, get_video_length
 
 class Predictor(BasePredictor):
     def predict(
@@ -66,6 +66,8 @@ class Predictor(BasePredictor):
             raise(Exception("Choose audio or youtube link."))
         if youtube_link:
             audio=youtube_link
+            if get_video_length(youtube_link)>300:
+                raise Exception("Video length should be 5 minutes or less.")
         if voice_model == "custom":
             download_online_model(custom_voice_model_link)
             generate_ai_cover(audio,"custom")

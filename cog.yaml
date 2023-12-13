@@ -7,6 +7,7 @@ build:
     - "ffmpeg"
   python_packages:
     - "gdown"
+    - "pytube"
     - "deemix"
     - "fairseq==0.12.2"
     - "faiss-cpu==1.7.3"

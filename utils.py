@@ -4,6 +4,21 @@ import shutil
 import urllib.request
 import gdown
 import subprocess
+from pytube import YouTube
+
+def get_video_length(video_url):
+    try:
+        # Create a YouTube object
+        yt = YouTube(video_url)
+
+        # Get the duration in seconds
+        duration_seconds = yt.length
+        
+        return duration_seconds
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
 def extract_zip(extraction_folder, zip_name):
     os.makedirs(extraction_folder)
@@ -134,3 +149,4 @@ def move_model(destination_dir):
                 destination_file = os.path.join(destination_dir, file)
                 shutil.move(source_file, destination_file)
                 print(f"Moved {file} to {destination_dir}")
+
